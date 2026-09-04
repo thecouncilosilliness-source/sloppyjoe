@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, "feat/*" ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    name: Verify & Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - name: Check Formatting
+        run: cargo fmt --check
+      - name: Clippy Lints
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+      - name: Debug Tests
+        run: cargo test --workspace --all-targets -- --nocapture
+      - name: Release Tests
+        run: cargo test --release --workspace --all-targets -- --nocapture

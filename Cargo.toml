@@ -1,3 +1,15 @@
 [workspace]
 resolver = "2"
 members = ["porch_engine"]
+default-members = ["porch_engine"]
+
+[workspace.package]
+edition = "2021"
+license = "Apache-2.0"
+
+[workspace.lints.rust]
+unsafe_op_in_unsafe_fn = "deny"
+unused_must_use = "deny"
+
+[workspace.lints.clippy]
+dbg_macro = "deny"

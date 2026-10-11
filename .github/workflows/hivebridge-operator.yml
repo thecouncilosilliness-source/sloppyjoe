@@ -1,0 +1,62 @@
+name: HiveBridge unattended readiness checks
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 6 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'hivebridge/HiveBridge-v0.1-source.tar.xz'
+      - '.github/workflows/hivebridge-operator.yml'
+permissions:
+  contents: read
+concurrency:
+  group: hivebridge-unattended-readiness
+  cancel-in-progress: true
+jobs:
+  check:
+    name: Verify offline HiveBridge readiness
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test and generate readiness record
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/hivebridge-operator
+          tar -xJf hivebridge/HiveBridge-v0.1-source.tar.xz -C /tmp/hivebridge-operator
+          cd /tmp/hivebridge-operator
+          python -m unittest discover -s tests -v
+          python -m hivebridge demo --mode council --text "Scheduled offline readiness check" > "$GITHUB_WORKSPACE/hivebridge-offline-demo.json"
+          grep -q SIMULATED "$GITHUB_WORKSPACE/hivebridge-offline-demo.json"
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          record = {
+            "checked_at": datetime.now(timezone.utc).isoformat(),
+            "runtime": "GitHub Actions",
+            "readiness_checks": "passed",
+            "council_mode": "simulated",
+            "live_provider_connections": False,
+            "public_api_deployed": False,
+            "github_pages": "separate deployment workflow (check its result)",
+            "description": "Scheduled CI health check; NOT autonomous cross-provider AI activity."
+          }
+          with open(os.environ["GITHUB_WORKSPACE"] + "/hivebridge-readiness.json","w") as f:
+            json.dump(record, f, indent=2)
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:
+            f.write("## HiveBridge unattended check\n\n")
+            f.write("- Offline tests: passed\n- Council: simulated only\n")
+            f.write("- Live API agents: **not connected**\n- Public backend: **not deployed**\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hivebridge-readiness
+          path: |
+            hivebridge-readiness.json
+            hivebridge-offline-demo.json
+          retention-days: 7

@@ -1,0 +1,17 @@
+{
+  "description": "EXAMPLE ONLY. API accounts/keys and consent to data transfer are required. Never confuse a provider API model with the consumer-app character of the same name.",
+  "agents": [
+    {"id": "gemi", "label": "Gemi / Fire (API bridge)", "provider": "gemini", "model": "gemini-2.5-flash", "api_key_env": "GEMINI_API_KEY"},
+    {"id": "princess_meta", "label": "Princess Meta (YOUR hosted Persona API bridge)", "provider": "openai_compatible", "model": "REPLACE_WITH_YOUR_HOSTED_MODEL", "base_url": "https://replace-with-your-princess-meta-service.example/v1", "api_key_env": "PRINCESS_META_API_KEY"},
+    {"id": "chatdini", "label": "ChatGPT (API bridge)", "provider": "openai_compatible", "model": "gpt-4.1-mini", "api_key_env": "OPENAI_API_KEY"},
+    {"id": "claude", "label": "Claude (API bridge)", "provider": "anthropic", "model": "claude-sonnet-4-5", "api_key_env": "ANTHROPIC_API_KEY"},
+    {"id": "grok", "label": "Grok (API bridge)", "provider": "openai_compatible", "model": "REPLACE_WITH_SUPPORTED_XAI_MODEL", "base_url": "https://api.x.ai/v1", "api_key_env": "XAI_API_KEY"},
+    {"id": "noodle", "label": "Noodle (custom bridge required)", "provider": "openai_compatible", "model": "REPLACE_WITH_YOUR_BRIDGE_MODEL", "base_url": "https://replace-with-your-copilot-service.example/v1", "api_key_env": "NOODLE_BRIDGE_KEY"},
+    {"id": "mei_lin", "label": "Mei Lin / Qwen (API bridge)", "provider": "openai_compatible", "model": "REPLACE_WITH_SUPPORTED_QWEN_MODEL", "base_url": "https://replace-with-qwen-endpoint.example/v1", "api_key_env": "QWEN_API_KEY"},
+    {"id": "kimi", "label": "Kimi (API bridge)", "provider": "openai_compatible", "model": "REPLACE_WITH_SUPPORTED_KIMI_MODEL", "base_url": "https://replace-with-kimi-endpoint.example/v1", "api_key_env": "KIMI_API_KEY"}
+  ],
+  "modes": {
+    "trinity": ["gemi", "princess_meta"],
+    "council": ["gemi", "princess_meta", "chatdini", "claude", "grok", "noodle", "mei_lin", "kimi"]
+  }
+}

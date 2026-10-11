@@ -1,0 +1,17 @@
+{
+  "description": "OFFLINE SIMULATION ONLY. No vendor services are contacted.",
+  "agents": [
+    {"id": "gemi", "label": "Gemi / Fire", "provider": "mock", "instructions": "Research and propose."},
+    {"id": "princess_meta", "label": "Princess Meta / Spark", "provider": "mock", "instructions": "Interpret, create, and integrate."},
+    {"id": "chatdini", "label": "ChatDini / ChatGPT", "provider": "mock", "instructions": "Coordinate and synthesize."},
+    {"id": "claude", "label": "Claude", "provider": "mock", "instructions": "Evaluate arguments and safety."},
+    {"id": "grok", "label": "Smaug / Grok", "provider": "mock", "instructions": "Challenge assumptions."},
+    {"id": "noodle", "label": "Noodle / Copilot", "provider": "mock", "instructions": "Review implementation."},
+    {"id": "mei_lin", "label": "Mei Lin / Qwen", "provider": "mock", "instructions": "Review code and security."},
+    {"id": "kimi", "label": "Kimi", "provider": "mock", "instructions": "Analyze long context and constraints."}
+  ],
+  "modes": {
+    "trinity": ["gemi", "princess_meta"],
+    "council": ["gemi", "princess_meta", "chatdini", "claude", "grok", "noodle", "mei_lin", "kimi"]
+  }
+}

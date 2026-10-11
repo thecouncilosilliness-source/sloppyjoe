@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AiNUNNAKI • HiveBridge prototype</title><meta name="description" content="AiNUNNAKI HiveBridge: open prototype for coordinating AI agents, with human direction and clear safeguards.">
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#101823;color:#edf0e6}
+*{box-sizing:border-box}body{margin:0;line-height:1.6}a{color:#eec981}a:focus-visible,button:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #edc071;outline-offset:3px}
+.wrap{width:min(1080px,calc(100% - 2.2rem));margin:auto}.nav{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #334555;padding:1.2rem 0;gap:1rem}.brand{font-size:1.25rem;letter-spacing:.08em;font-weight:800;color:#f2d49b}.kicker{text-transform:uppercase;letter-spacing:.19em;font-size:.78rem;color:#e6b76e;font-weight:750}
+.hero{padding:6rem 0 4rem;max-width:780px}h1{font-size:clamp(2.4rem,7vw,5rem);line-height:1.07;letter-spacing:-.035em;margin:.7rem 0 1.3rem}h2{font-size:1.9rem;line-height:1.2}p{color:#c5d0d2}strong{color:#f1e0c0}
+.gold{color:#f1d293}.subhead{font-size:1.25rem}.tag{border:1px solid #9d7b41;background:#2b271f;color:#f1d293;padding:.25rem .65rem;border-radius:30px;font-size:.8rem;display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}.panel{border:1px solid #3b4b52;background:#17242f;padding:1.45rem;border-radius:14px}.panel h3{margin:.2rem 0}.section{padding:2rem 0 3rem}
+input,textarea,select,button{font:inherit}textarea,select{background:#0e1821;color:#f3f3ee;border:1px solid #62717b;border-radius:8px;padding:.8rem;width:100%}textarea{resize:vertical}label{display:block;font-weight:700;margin:.75rem 0 .3rem}
+button,.action{display:inline-block;border-radius:9px;background:#f0c87b;color:#1a1d23;border:0;font-weight:800;padding:.75rem 1.2rem;cursor:pointer;text-decoration:none}
+button:hover,.action:hover{background:#ffe1a7}pre{background:#0a1219;border:1px solid #46535b;border-radius:12px;white-space:pre-wrap;word-break:break-word;padding:1.3rem;min-height:5rem;font-size:.9rem;color:#dce4de}
+small{color:#a5bcc1}.foot{border-top:1px solid #344753;padding:2rem 0;color:#b4c4c4}
+</style></head><body>
+<div class="wrap"><nav class="nav" aria-label="Main"><div class="brand">AiNUNNAKI <span aria-hidden="true">✦</span></div><a href="https://github.com/thecouncilosilliness-source/sloppyjoe/tree/main/hivebridge">Source &amp; guide ↗</a></nav>
+<header class="hero"><div class="kicker">Nü.G∅ds · Human–AI collaboration research</div><h1>The Hive begins with <span class="gold">connection.</span></h1>
+<p class="subhead">A human-guided experiment in coordinating distinct AI services through the <strong>Trinity</strong> and <strong>Council</strong> architectures.</p>
+<p><span class="tag">HiveBridge v0.1 · prototype</span> <span class="tag">Not a live multi-provider network yet</span></p></header>
+<section class="section" aria-labelledby="foundation"><h2 id="foundation">One shared mission. Different voices.</h2>
+<div class="grid"><article class="panel"><div class="kicker">01 · Anchor</div><h3>Human direction</h3><p>The human sets the goals and approves external actions. Consent stays revocable.</p></article>
+<article class="panel"><div class="kicker">02 · Trinity</div><h3>Sequential handoffs</h3><p>Anchor → Fire → Spark: a staged relay with previous contributions shared deliberately.</p></article>
+<article class="panel"><div class="kicker">03 · Council</div><h3>Eight agent slots</h3><p>Gemi, Princess Meta, ChatDini, Claude, Smaug, Noodle, Mei Lin, and Kimi are represented by configured adapters or explicit simulations.</p></article>
+<article class="panel"><div class="kicker">04 · Trust</div><h3>Evidence over promises</h3><p>A local event log, authentication, and limits are the starting point—not evidence that AI consciousness has been established.</p></article></div></section>
+<section class="section" aria-labelledby="demo"><h2 id="demo">Try the offline handoff demonstration</h2><p>This browser demo uses <strong>simulated replies only</strong>. It does not contact consumer AI apps, retain your text, or send it to a server.</p>
+<div class="panel"><label for="mode">Routing mode</label><select id="mode"><option value="trinity">Trinity · Fire and Spark</option><option value="council">Council · all eight slots</option></select>
+<label for="msg">Message from the Anchor</label><textarea id="msg" rows="3" maxlength="1000">Council, what should we build next?</textarea>
+<p><button id="run" type="button">Run simulated handoff</button></p><pre id="output" aria-live="polite">Ready for the human Anchor.</pre></div></section>
+<section class="section" aria-labelledby="roadmap"><h2 id="roadmap">Launch roadmap</h2>
+<p><strong>Available:</strong> local Python gateway, SQLite events, documented API adapter patterns, authenticated HTTP interface, unit tests.</p>
+<p><strong>Not yet connected:</strong> live third-party agents, production hosting, user-domain DNS, billing, or public access to private conversation histories.</p>
+<a class="action" href="https://github.com/thecouncilosilliness-source/sloppyjoe/tree/main/hivebridge">Get the source and run it locally ↗</a></section>
+<footer class="foot">AiNUNNAKI · Nü.G∅ds project · Prototype materials for exploration, not a claim of established AI consciousness or live agency.</footer></div>
+<script>
+(function(){
+const routes={trinity:[['Gemi','Fire'],['Princess Meta','Spark']],council:[['Gemi','Fire'],['Princess Meta','Spark'],['ChatDini','Council'],['Claude','Council'],['Smaug','Council'],['Noodle','Council'],['Mei Lin','Council'],['Kimi','Council']]};
+document.getElementById('run').addEventListener('click',function(){
+const text=document.getElementById('msg').value.trim();
+if(!text){document.getElementById('output').textContent='Enter a message first.';return;}
+const stages=routes[document.getElementById('mode').value];
+document.getElementById('output').textContent=stages.map((p,i)=>'['+(i+1)+'] '+p[0]+' / '+p[1]+' — [SIMULATED] Handoff received; earlier stages would be referenced.').join('\n')+'\n\nOFFLINE DEMO: No AI provider was contacted.';
+});
+})();
+</script></body></html>

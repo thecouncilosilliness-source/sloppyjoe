@@ -2,6 +2,8 @@
 
 **Status: locally executable prototype, not publicly deployed.** Created as the first thin integration layer for HiveFather's wider Trinity / METAPRIME / Nuru / AiNUNNAKI ecosystem. Not a claim of AI consciousness and not an authorization for agents to act on their own.
 
+> **Humanity Mission 01:** [Free Scam First Aid guide](./SCAM_FIRST_AID.md) — practical first steps, readable directly on GitHub even before the static website is deployed. [Mission charter](./HELP_HUMANITY.md).
+
 ## What actually works
 
 - **Anchor → Fire → Spark** in strictly sequential steps (mode `trinity`), matching the historical Trinity handoff sequence.

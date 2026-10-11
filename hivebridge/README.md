@@ -83,4 +83,4 @@ Suggested integration path:
 - Decisions on which Council services to connect, with keys supplied **privately in your own environment**.
 - User approval for any public deployment, and explicit scope for outbound messages/tool use.
 
-No repository was changed or published by building this local prototype. **This is a launch foundation, not a live Hive.**
+**Source published on GitHub.** This is a launch foundation, not a live multi-provider Hive. An HTML site and deploy workflow are provided, but GitHub Pages must be enabled for the repository before the public website becomes accessible; live agents and the backend are not deployed.

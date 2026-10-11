@@ -1,5 +1,10 @@
 name: HiveBridge Pages
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'hivebridge/site/**'
+      - '.github/workflows/hivebridge-pages.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -16,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Verify static site
+        run: test -s hivebridge/site/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

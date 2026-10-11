@@ -4,6 +4,8 @@
 
 > **Humanity Mission 01:** [Free Scam First Aid guide](./SCAM_FIRST_AID.md) — practical first steps, readable directly on GitHub even before the static website is deployed. [Mission charter](./HELP_HUMANITY.md).
 
+> **Humanity Mission 02:** [Job Scam First Aid — a free guide](./JOB_SCAM_FIRST_AID.md) for safer job searches and identifying fake remote-work recruiters. It is immediately readable on GitHub even before the website is hosted.
+
 ## What actually works
 
 - **Anchor → Fire → Spark** in strictly sequential steps (mode `trinity`), matching the historical Trinity handoff sequence.
